@@ -1,6 +1,5 @@
-package com.Ecommerce;
+package com.Ecommerce.Models;
 
-import com.Ecommerce.Models.User;
 import jakarta.persistence.*;
 import lombok.*;
 
