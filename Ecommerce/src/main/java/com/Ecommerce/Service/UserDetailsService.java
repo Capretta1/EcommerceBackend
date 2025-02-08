@@ -22,13 +22,12 @@ public class UserDetailsService implements org.springframework.security.core.use
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(username);
+        //CONVERTS USER ROLE TO GRANTED AUTHORITIES
         List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole().toString()));
-        return new U
+        //RETURNS A USER OBJECT
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), authorities);
 
     }
 
-    private Collection<? extends GrantedAuthority> getAuthorities(User user) {
-        String role = "Role_" + user.getRole().name();
-        return List.of(new SimpleGrantedAuthority(role));
-    }
+
 }
